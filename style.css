@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url(./image/landscape.jpg);
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#cloud {
+  width: 100%;
+}
+.cloud {
+  width: 300px;
+}
+#could1 {
+  position: relative;
+  top: 300px;
+}
+#header {
+  width: 100%;
+}
+#top-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.lifePoint > ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+.heartImg {
+  border-radius: 50%;
+}
+#gameContainer {
+  background-image: url(./image/grass_14.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  /* border-radius: 30px; */
+  margin-top: 50px;
+  /* background-color: cadetblue; */
+  width: 1000px;
+  height: 580px;
+  border: 15px solid rgb(187, 114, 45);
+}
+
+.countDown {
+  font-family: fantasy;
+  padding: 0 20px;
+  color: rgb(92, 145, 194);
+  font-size: 90px;
+  border-radius: 20px;
+}
+#main {
+  display: flex;
+  justify-content: space-between;
+}
+#score {
+  width: 300px;
+  height: 200px;
+  color: red;
+  font-size: 70px;
+  font-style: bold;
+  font-family: fantasy;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#start {
+  margin-top: 100px;
+  border-radius: 20px;
+  width: 200px;
+  height: 100px;
+  background-color: aquamarine;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: color 4s linear 0.5s infinite;
+}
+@keyframes color {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: rgb(75, 235, 195);
+  }
+  100% {
+    background-color: rgb(241, 164, 100);
+  }
+}
+#btn {
+  border: none;
+  width: 150px;
+  height: 60px;
+  border-radius: 20px;
+  font-size: 30px;
+  color: chartreuse;
+  animation: puff-in-center 2s cubic-bezier(0.47, 0, 0.745, 0.715) infinite both;
+}
+
+@keyframes puff-in-center {
+  0% {
+    transform: scale(2);
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes start {
+  0% {
+    background-size: 50%;
+  }
+  100% {
+    background-size: cover;
+  }
+}
+#main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
