@@ -1,27 +1,32 @@
+let score = document.querySelector("#score p span");
+console.log(score);
+
+let point = 0;
+
 let countdown = document.querySelector(".countDown");
 let button = document.getElementById("btn");
-let startMin = 5;
+let startMin = 2;
 let time = startMin * 60;
 
-let start = () => {
-  setInterval(countDown, 1000);
-};
 function countDown() {
   const min = Math.floor(time / 60);
   let sec = time % 60;
+  if (sec < 10) {
+    sec = "0" + sec;
+  } else {
+    sec;
+  }
 
-  sec = sec < 10 ? "0" + sec : sec;
+  button.textContent = "GO";
 
   countdown.textContent = `0${min} : ${sec}`;
   time--;
 }
 
+let start = () => {
+  setInterval(countDown, 1000);
+};
 button.onclick = start;
-
-let score = document.querySelector("#score p span");
-console.log(score);
-
-let point = 0;
 
 //* --------------------------------------------------------------------------------------------------------
 const scale = 8;
@@ -79,27 +84,27 @@ function getRndInteger(min, max) {
 // let val = 200;
 
 const ceriseImg = new Image();
-ceriseImg.src = "/cerise.gif";
+ceriseImg.src = "./cerise.gif";
 let cerise = {
   x: Math.floor(Math.random() * canvas.width),
   y: Math.floor(Math.random() * canvas.height),
 };
 
 const orangeImg = new Image();
-orangeImg.src = "/orange.gif";
+orangeImg.src = "./orange.gif";
 let orange = {
   x: Math.floor(Math.random() * canvas.width),
   y: Math.floor(Math.random() * canvas.height),
 };
 
 const berryImg = new Image();
-berryImg.src = "/berry.png";
+berryImg.src = "./berry.png";
 let berry = {
   x: Math.floor(Math.random() * canvas.width),
   y: Math.floor(Math.random() * canvas.height),
 };
 const fraiseImg = new Image();
-fraiseImg.src = "/fraise.gif";
+fraiseImg.src = "./fraise.gif";
 let fraise = {
   x: Math.floor(Math.random() * canvas.width),
   y: Math.floor(Math.random() * canvas.height),
@@ -134,6 +139,13 @@ class Ball {
     }
     //* collision detection
 
+    // if (this.x - this.radius < pX + sWidth && this.x + this.radius > pX) {
+    //   point -= 2;
+    // }
+    // if (this.y - this.radius < pY + sHeight && this.y + this.radius > pY) {
+    //   point -= 2;
+    // }
+
     this.x += this.dx;
     this.y += this.dy;
     this.draw(ctx);
@@ -141,56 +153,6 @@ class Ball {
 }
 
 let ball1 = new Ball(190, 350, 70, "brown", 4);
-
-//* collision detcetion ball & player
-
-function maxVal(val, min, max) {
-  return Math.max(min, Math.min(max, val));
-}
-
-let closestX = maxVal(ball1.x, pX, pX + sWidth);
-let closestY = maxVal(ball1.y, pY, pY + sHeight);
-
-let distX = ball1.x - closestX;
-let distY = ball1.y - closestY;
-
-function checkingIntersect() {
-  let distSqaured = Math.pow(distX, 2) + Math.pow(distY, 2);
-  return distSqaured < Math.pow(ball1.radius, 2);
-}
-
-function isColliding() {
-  let circleDist = {
-    x: Math.abs(ball1.x - pX),
-    y: Math.abs(ball1.y - pY),
-  };
-
-  if (circleDist.x > sWidth / 2 + ball1.radius) {
-    point -= 2;
-    score.textContent = `${point}`;
-    return false;
-  }
-  if (circleDist.y > sHeight / 2 + ball1.radius) {
-    point -= 2;
-    score.textContent = `${point}`;
-    return false;
-  }
-  if (circleDist.x < sWidth / 2) {
-    point -= 2;
-    score.textContent = `${point}`;
-    return true;
-  }
-  if (circleDist.y < sHeight / 2) {
-    point -= 2;
-    score.textContent = `${point}`;
-    return true;
-  }
-
-  let cornerDistSqred =
-    Math.sqrt(circleDist.x - sWidth / 2) + Math.sqrt(circleDist - sHeight / 2);
-  return cornerDistSqred <= Math.sqrt(ball1.radius);
-}
-// isColliding();
 
 //* make player --------------------------------------------------------------------------------------------------------
 
@@ -208,8 +170,6 @@ function playerMove(diffX, diffY, direction) {
   if (pY + sHeight + diffY > canvas.height) {
     pY -= diffY;
   }
-
-
 
   pX += diffX;
   pY += diffY;
@@ -272,13 +232,12 @@ function eatFood() {
     point += 3;
     score.textContent = `${point}`;
   }
-
 }
-    // function loosePoint() {
-    //   if (pX < ball1.x + ball1.radius && pX > ball1 && ) {
-        
-    //   }
-    // }
+// function loosePoint() {
+//   if (pX < ball1.x + ball1.radius && pX > ball1 && ) {
+
+//   }
+// }
 //* --------------------------------------------------------------------------------------------------------
 
 function loadImage() {
@@ -338,7 +297,7 @@ function gameLoop() {
       }
     }
   }
-  checkingIntersect();
+  // checkingIntersect();
   // isColliding();
   drawFood();
   eatFood();
