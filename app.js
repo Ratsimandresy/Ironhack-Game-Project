@@ -258,7 +258,7 @@ function eatFood() {
     };
     playEat();
     num4++;
-    cherry.textContent = `${num}`;
+    cherry.textContent = `${num4}`;
     point += 2;
     score.textContent = `${point}`;
   }
@@ -275,7 +275,7 @@ function eatFood() {
     };
     playEat();
     num3++;
-    voasary.textContent = `${num}`;
+    voasary.textContent = `${num3}`;
     point += 1;
     score.textContent = `${point}`;
   }
@@ -292,7 +292,7 @@ function eatFood() {
     playEat();
     point += 1;
     num2++;
-    goavy.textContent = `${num}`;
+    goavy.textContent = `${num2}`;
     score.textContent = `${point}`;
   }
   if (
@@ -307,7 +307,7 @@ function eatFood() {
     };
     playEat();
     num1++;
-    strawberry.textContent = `${num}`;
+    strawberry.textContent = `${num1}`;
     point += 3;
     score.textContent = `${point}`;
   }
