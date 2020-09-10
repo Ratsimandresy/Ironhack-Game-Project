@@ -110,8 +110,8 @@ let keyPresses = {};
 let currentDirection = up;
 let currentLoopIndex = 0;
 let frameCount = 0;
-let pX = 600;
-let pY = 800;
+let pX = 50;
+let pY = 50;
 let img = new Image();
 let moving = false;
 

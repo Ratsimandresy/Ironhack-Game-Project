@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 body {
+  height: 100vh;
+  width: 100vw;
   background-image: url(./image/landscape.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -12,10 +14,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 #could1 {
   position: relative;
   top: 300px;
 }
+
 #header {
   width: 100%;
   display: flex;
