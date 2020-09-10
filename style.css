@@ -15,11 +15,6 @@ body {
   align-items: center;
 }
 
-#could1 {
-  position: relative;
-  top: 300px;
-}
-
 #header {
   width: 100%;
   display: flex;
@@ -65,6 +60,37 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
+#left-panel {
+  font-family: fantasy;
+  font-size: 40px;
+  color: rgb(159, 51, 202);
+  animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
 #score {
   width: 300px;
   height: 200px;

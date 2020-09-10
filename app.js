@@ -107,7 +107,7 @@ console.log(life);
 let canvas = document.getElementById("gameContainer");
 let ctx = canvas.getContext("2d");
 let keyPresses = {};
-let currentDirection = up;
+let currentDirection = down;
 let currentLoopIndex = 0;
 let frameCount = 0;
 let pX = 50;
@@ -316,6 +316,7 @@ function collideWithBall(ball) {
   ) {
     isPlayerIntangible = true;
     setTimeout(() => {
+      point -= Math.floor(Math.random() * (7 - 1 + 1)) + 1;
       isPlayerIntangible = false;
     }, 300);
     deadSound();

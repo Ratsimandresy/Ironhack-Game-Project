@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url(./image/landscape.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  font-family: fantasy;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: rgb(201, 44, 75);
+  animation: shake-horizontal 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}
+
+main {
+  margin: 20px 0px;
+  color: rgb(236, 104, 15);
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  margin: 5px 0px;
+  animation: shadow-drop-2-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    infinite both;
+}
+
+@keyframes shadow-drop-2-center {
+  0% {
+    transform: translateZ(0);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  100% {
+    transform: translateZ(50px);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
+  }
+}
+
+footer {
+  color: rgb(111, 193, 196);
+  font-size: 40px;
+  text-align: center;
+}
