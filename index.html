@@ -63,14 +63,22 @@
           <p>score : <span>0</span></p>
         </div>
       </div>
-      <div class="countDown">00:00:00</div>
     </header>
+
+    <div class="countDown">00:00:00</div>
+
     <div id="start">
       <button id="btn" onclick="start();gameLoop()">S T A R T</button>
     </div>
+
     <main id="main">
+      <div id="left">
+        
+      </div>
       <canvas id="gameContainer"></canvas>
+      <div id="right"></div>
     </main>
-    <audio id="sound" src="./game-sound.mp3"></audio>
+
+    <audio loop id="sound" src="./game-sound.mp3"></audio>
   </body>
 </html>

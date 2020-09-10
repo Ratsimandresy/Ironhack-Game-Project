@@ -18,7 +18,8 @@ header {
   align-items: center;
   font-size: 50px;
   color: rgb(201, 44, 75);
-  animation: shake-horizontal 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
+  animation: shake-horizontal 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    infinite both;
 }
 
 @keyframes shake-horizontal {
@@ -46,16 +47,26 @@ header {
 }
 
 main {
-  margin: 20px 0px;
-  color: rgb(236, 104, 15);
+    font-style: bold;
+  margin: 0 20px 0 0;
+  color: rgb(197, 114, 59);
   font-size: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+main ul li {
+    list-style: none;
+}
+
+main ul li span {
+    color: rgb(240, 13, 13);
+}
+
+
 p {
-  margin: 5px 0px;
+  margin: 4px 0px;
   animation: shadow-drop-2-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     infinite both;
 }
@@ -75,4 +86,22 @@ footer {
   color: rgb(111, 193, 196);
   font-size: 40px;
   text-align: center;
+}
+
+#cloud1 {
+  position: relative;
+  top: 180px;
+  left: 140px;
+}
+
+#cloud2 {
+  position: relative;
+  top: 180px;
+  left: 1120px;
+}
+
+#cloud3 {
+  position: relative;
+  top: -100px;
+  left: 1400px;
 }

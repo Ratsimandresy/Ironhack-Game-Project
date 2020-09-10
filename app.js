@@ -70,7 +70,7 @@ deadAudio.src = "./audio/dead.mp3";
 let sound = document.getElementById("sound");
 
 function play() {
-  sound.volume = 0.02;
+  sound.volume = 0.08;
   sound.play();
 }
 function upSound() {
@@ -208,6 +208,7 @@ let ball1 = new Ball(190, 350, 70, "blue", 4);
 let ball2 = new Ball(400, 360, 70, "red", -2);
 let ball3 = new Ball(500, 500, 70, "yellow", 3);
 let ball4 = new Ball(700, 100, 70, "green", -1.5);
+let ball5 = new Ball(700, 250, 70, "white", -5);
 
 //* make player --------------------------------------------------------------------------------------------------------
 
@@ -406,7 +407,7 @@ function gameLoop() {
   }
   drawFood();
   eatFood();
-  // play();
+  play();
 
   drawFrame(loopCycle[currentLoopIndex], currentDirection, pX, pY);
 
@@ -415,6 +416,7 @@ function gameLoop() {
   noDelay = noDelay && collideWithBall(ball2);
   noDelay = noDelay && collideWithBall(ball3);
   noDelay = noDelay && collideWithBall(ball4);
+  noDelay = noDelay && collideWithBall(ball5);
 
   // collideWithBall(ball1);
   // collideWithBall(ball2);
@@ -425,11 +427,13 @@ function gameLoop() {
   ball2.draw();
   ball3.draw();
   ball4.draw();
+  ball5.draw();
 
   ball3.update();
   ball2.update();
   ball1.update();
   ball4.update();
+  ball5.update();
 
   if (noDelay === false) {
     window.setTimeout(() => {

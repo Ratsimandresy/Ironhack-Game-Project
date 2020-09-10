@@ -21,25 +21,29 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 #top-panel {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 #lifePoint {
-  border: 5px dashed rgb(180, 56, 56);
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 500px;
   height: 100px;
 }
+
 .heartImg {
   display: block;
   border-radius: 50%;
 }
+
 #gameContainer {
+  border-radius: 5px;
   background-image: url(./image/grass_14.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -57,11 +61,30 @@ body {
   font-size: 90px;
   border-radius: 20px;
 }
+
 #main {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
+
+#left {
+  width: 300px;
+  height: 500px;
+  background-color: rgb(131, 247, 206);
+  opacity: 0.7;
+  border-radius: 30px;
+}
+
+
+#right {
+  width: 300px;
+  height: 500px;
+  background-color: aquamarine;
+  opacity: 0.7;
+  border-radius: 30px;
+}
+
 #left-panel {
   margin-left: -50px;
   font-family: fantasy;
@@ -119,6 +142,7 @@ body {
   align-items: center;
   animation: color 4s linear 0.5s infinite;
 }
+
 @keyframes color {
   0% {
     background-color: yellow;
@@ -130,6 +154,7 @@ body {
     background-color: rgb(241, 164, 100);
   }
 }
+
 #btn {
   border: none;
   width: 150px;
