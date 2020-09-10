@@ -57,18 +57,33 @@
       />
         </div>
         <div id="score">
-          <p>score : <span>0</span></p>
+          <p>score : <span>0</span> </p>
         </div>
       </div>
+      <div class="countDown">00:00:00</div>
     </header>
-    <div class="countDown">00:00:00</div>
-    <div id="start"><button id="btn" onclick="start()">S T A R T</button></div>
+    <div id="start"><button id="btn" onclick="start();gameLoop()" onclick="gameLoop()">S T A R T</button></div>
     <main id="main">
-      <aside id="right-panel"></aside>
+      <aside id="right-panel">
+        <div>
+          <p>eat as many fruits as you can</p>
+        </div>
+        <div>
+          <p>Avoid the balls or you will loose a heart</p>
+        </div>
+      </aside>
       <div>
         <canvas id="gameContainer"></canvas>
       </div>
-      <aside id="left-panel"></aside>
+      <aside id="left-panel">
+        <h1>Fruits points</h1>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
     </main>
     <audio id="sound" src="./game-sound.mp3"></audio>
   </body>

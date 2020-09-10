@@ -7,7 +7,7 @@ let ms = 0;
 let s = 0;
 let m = 0;
 let timer;
-
+let isPlayerIntangible = false;
 let stopwatch = document.querySelector(".countDown");
 let button = document.getElementById("btn");
 
@@ -35,7 +35,6 @@ function run() {
     m++;
   }
 }
-button.onclick = start;
 
 //* --------------------------------------------------------------------------------------------------------
 const scale = 7;
@@ -100,8 +99,7 @@ function playEat() {
 //* --------------------------------------------------------------------------------------------------------
 let lives = document.getElementById("lifePoint");
 let life = document.querySelectorAll(".heartImg");
-// let heart1 = document.getElementById("heart1");
-// console.log(lives);
+
 console.log(life);
 
 //* --------------------------------------------------------------------------------------------------------let canvas = document.getElementById("gameContainer");
@@ -112,8 +110,8 @@ let keyPresses = {};
 let currentDirection = up;
 let currentLoopIndex = 0;
 let frameCount = 0;
-let pX = 500;
-let pY = 700;
+let pX = 600;
+let pY = 800;
 let img = new Image();
 let moving = false;
 
@@ -296,22 +294,34 @@ function eatFood() {
     score.textContent = `${point}`;
   }
 }
+
 function removeHeart() {
-  // lives.lastChild.remove();
+  lives.lastChild.remove();
   console.log("remove heart");
+  if (!lives.firstChild) {
+    alert("GAME OVER");
+  }
+}
+function changeColor(ball) {
+  ball.color = "#" + parseInt(Math.random() * 0xffffff).toString(16);
 }
 
 function collideWithBall(ball) {
+  if (isPlayerIntangible) return;
   if (
     pX < ball.x + ball.radius &&
     pX + sWidth > ball.x &&
     pY < ball.y + ball.radius &&
     pY + sHeight > ball.y
   ) {
+    isPlayerIntangible = true;
+    setTimeout(() => {
+      isPlayerIntangible = false;
+    }, 300);
     deadSound();
     removeHeart();
-    ball.color = "#" + parseInt(Math.random() * 0xffffff).toString(16);
-    console.log(false);
+    changeColor(ball);
+
     return false;
   }
   return true;
@@ -428,5 +438,6 @@ function gameLoop() {
 
   // window.requestAnimationFrame(gameLoop);
 }
-
 gameLoop();
+button.onclick = start;
+// button.onclick = gameLoop;
