@@ -38,7 +38,7 @@ function run() {
 button.onclick = start;
 
 //* --------------------------------------------------------------------------------------------------------
-const scale = 8;
+const scale = 7;
 const width = 16;
 const height = 18;
 const sWidth = scale * width;
@@ -92,7 +92,8 @@ function playEat() {
 }
 
 //* --------------------------------------------------------------------------------------------------------
-let lives = document.getElementById("heartImg");
+let lives = document.getElementById("lifePoint");
+console.log(lives);
 
 //* --------------------------------------------------------------------------------------------------------let canvas = document.getElementById("gameContainer");
 
@@ -102,8 +103,8 @@ let keyPresses = {};
 let currentDirection = up;
 let currentLoopIndex = 0;
 let frameCount = 0;
-let pX = 400;
-let pY = 300;
+let pX = 500;
+let pY = 700;
 let img = new Image();
 let moving = false;
 
@@ -293,7 +294,7 @@ function loosingLives(ball) {
     pY < ball.y + ball.radius &&
     pY + sHeight > ball.y
   ) {
-    ball.color = "black";
+    lives.removeChild(lives.firstChild);
   }
 }
 
