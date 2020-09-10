@@ -58,6 +58,10 @@ let downAudio = new Audio();
 let leftAudio = new Audio();
 let rightAudio = new Audio();
 let deadAudio = new Audio();
+let num1 = 0;
+let num2 = 0;
+let num3 = 0;
+let num4 = 0;
 
 //* --------------------------------------------------------------------------------------------------------
 eatFruit.src = "./audio/eat.mp3";
@@ -102,7 +106,10 @@ function playEat() {
 let lives = document.getElementById("lifePoint");
 let life = document.querySelectorAll(".heartImg");
 
-console.log(life);
+let strawberry = document.querySelector("#fraise div span");
+let cherry = document.querySelector("#cerise div span");
+let voasary = document.querySelector("#orange div span");
+let goavy = document.querySelector("#guava div span");
 
 //* --------------------------------------------------------------------------------------------------------let canvas = document.getElementById("gameContainer");
 
@@ -250,6 +257,8 @@ function eatFood() {
       y: Math.floor(Math.random() * canvas.height),
     };
     playEat();
+    num4++;
+    cherry.textContent = `${num}`;
     point += 2;
     score.textContent = `${point}`;
   }
@@ -265,6 +274,8 @@ function eatFood() {
       y: Math.floor(Math.random() * canvas.height),
     };
     playEat();
+    num3++;
+    voasary.textContent = `${num}`;
     point += 1;
     score.textContent = `${point}`;
   }
@@ -280,6 +291,8 @@ function eatFood() {
     };
     playEat();
     point += 1;
+    num2++;
+    goavy.textContent = `${num}`;
     score.textContent = `${point}`;
   }
   if (
@@ -293,6 +306,8 @@ function eatFood() {
       y: Math.floor(Math.random() * canvas.height),
     };
     playEat();
+    num1++;
+    strawberry.textContent = `${num}`;
     point += 3;
     score.textContent = `${point}`;
   }
@@ -407,7 +422,7 @@ function gameLoop() {
   }
   drawFood();
   eatFood();
-  play();
+  // play();
 
   drawFrame(loopCycle[currentLoopIndex], currentDirection, pX, pY);
 

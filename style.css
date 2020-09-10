@@ -69,13 +69,22 @@ body {
 }
 
 #left {
+  padding: 30px 0px;
   width: 300px;
   height: 500px;
   background-color: rgb(131, 247, 206);
-  opacity: 0.7;
+  opacity: 0.8;
   border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+#cloudrainbow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 #right {
   width: 300px;
@@ -83,6 +92,53 @@ body {
   background-color: aquamarine;
   opacity: 0.7;
   border-radius: 30px;
+}
+
+#fraise {
+  margin: 34px 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#cerise {
+  margin: 34px 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#orange {
+  margin: 34px 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#guava {
+  margin: 34px 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#fraise div span {
+  font-size: 70px;
+  color: rgb(233, 121, 40);
+}
+
+#cerise div span {
+  font-size: 70px;
+  color: rgb(233, 121, 40);
+}
+
+#orange div span {
+  font-size: 70px;
+  color: rgb(233, 121, 40);
+}
+
+#guava div span {
+  font-size: 70px;
+  color: rgb(233, 121, 40);
 }
 
 #left-panel {
@@ -115,6 +171,10 @@ body {
     transform: scale(1);
     animation-timing-function: ease-out;
   }
+}
+
+#bunch {
+  margin-top: 40px;
 }
 
 #score {
