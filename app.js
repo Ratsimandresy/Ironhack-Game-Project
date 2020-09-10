@@ -56,6 +56,7 @@ let upAudio = new Audio();
 let downAudio = new Audio();
 let leftAudio = new Audio();
 let rightAudio = new Audio();
+let deadAudio = new Audio();
 
 //* --------------------------------------------------------------------------------------------------------
 eatFruit.src = "./audio/eat.mp3";
@@ -63,6 +64,7 @@ upAudio.src = "./audio/up.mp3";
 downAudio.src = "./audio/down.mp3";
 leftAudio.src = "./audio/left.mp3";
 rightAudio.src = "./audio/right.mp3";
+deadAudio.src = "./audio/dead.mp3";
 
 let sound = document.getElementById("sound");
 
@@ -75,16 +77,20 @@ function upSound() {
   upAudio.play();
 }
 function downSound() {
-  downAudio.volume = 0.3
+  downAudio.volume = 0.3;
   downAudio.play();
 }
 function leftSound() {
-  leftAudio.volume = 0.3
+  leftAudio.volume = 0.3;
   leftAudio.play();
 }
 function rightSound() {
-  rightAudio.volume = 0.3
+  rightAudio.volume = 0.3;
   rightAudio.play();
+}
+function deadSound() {
+  deadAudio.volume = 0.3;
+  deadAudio.play();
 }
 function playEat() {
   eatFruit.volume = 0.3;
@@ -93,7 +99,9 @@ function playEat() {
 
 //* --------------------------------------------------------------------------------------------------------
 let lives = document.getElementById("lifePoint");
-console.log(lives);
+let life = document.querySelectorAll(".heartImg");
+// console.log(lives);
+console.log(life)
 
 //* --------------------------------------------------------------------------------------------------------let canvas = document.getElementById("gameContainer");
 
@@ -196,8 +204,9 @@ class Ball {
 }
 
 let ball1 = new Ball(190, 350, 70, "blue", 4);
-let ball2 = new Ball(400, 360, 70, "yellow", -2);
+let ball2 = new Ball(400, 360, 70, "red", -2);
 let ball3 = new Ball(500, 500, 70, "yellow", 3);
+let ball4 = new Ball(700, 100, 70, "green", -1.5);
 
 //* make player --------------------------------------------------------------------------------------------------------
 
@@ -294,7 +303,8 @@ function loosingLives(ball) {
     pY < ball.y + ball.radius &&
     pY + sHeight > ball.y
   ) {
-    lives.removeChild(lives.firstChild);
+    deadSound();
+    ball.color = "#" + parseInt(Math.random() * 0xffffff).toString(16);
   }
 }
 
@@ -380,7 +390,7 @@ function gameLoop() {
   let hasMoved = false;
 
   if (keyPresses.ArrowUp) {
-    upSound();
+    downSound();
     playerMove(0, -speed, up);
     hasMoved = true;
   } else if (keyPresses.ArrowDown) {
@@ -390,11 +400,11 @@ function gameLoop() {
   }
 
   if (keyPresses.ArrowLeft) {
-    leftSound();
+    downSound();
     playerMove(-speed, 0, left);
     hasMoved = true;
   } else if (keyPresses.ArrowRight) {
-    rightSound();
+    downSound();
     playerMove(speed, 0, right);
     hasMoved = true;
   }
@@ -426,14 +436,17 @@ function gameLoop() {
   loosingLives(ball1);
   loosingLives(ball2);
   loosingLives(ball3);
+  loosingLives(ball4);
   // collisionBallPlayer(ball1);
   // isColliding();
   ball1.draw();
   ball2.draw();
   ball3.draw();
+  ball4.draw();
   ball3.update();
   ball2.update();
   ball1.update();
+  ball4.update();
   window.requestAnimationFrame(gameLoop);
 }
 gameLoop();

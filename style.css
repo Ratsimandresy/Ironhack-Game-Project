@@ -43,6 +43,7 @@ body {
   border-radius: 50%;
 }
 #gameContainer {
+  margin-bottom: 50px;
   background-image: url(./image/grass_14.png);
   background-size: cover;
   background-repeat: no-repeat;
