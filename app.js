@@ -3,29 +3,38 @@ console.log(score);
 
 let point = 0;
 
-let countdown = document.querySelector(".countDown");
+let ms = 0;
+let s = 0;
+let m = 0;
+let timer;
+
+let stopwatch = document.querySelector(".countDown");
 let button = document.getElementById("btn");
-let startMin = 2;
-let time = startMin * 60;
-
-function countDown() {
-  const min = Math.floor(time / 60);
-  let sec = time % 60;
-  if (sec < 10) {
-    sec = "0" + sec;
-  } else {
-    sec;
-  }
-
-  button.textContent = "GO";
-
-  countdown.textContent = `0${min} : ${sec}`;
-  time--;
-}
 
 let start = () => {
-  setInterval(countDown, 1000);
+  if (!timer) {
+    timer = setInterval(run, 10);
+  }
+  button.textContent = "GO";
 };
+
+function run() {
+  stopwatch.textContent =
+    (m < 10 ? "0" + m : m) +
+    ":" +
+    (s < 10 ? "0" + s : s) +
+    ":" +
+    (ms < 10 ? "0" + ms : ms);
+  ms++;
+  if (ms === 100) {
+    ms = 0;
+    s++;
+  }
+  if (s === 60) {
+    s = 0;
+    m++;
+  }
+}
 button.onclick = start;
 
 //* --------------------------------------------------------------------------------------------------------
@@ -42,8 +51,50 @@ const right = 3;
 const framLim = 12;
 var randomNumber;
 let speed = 3.3;
+let eatFruit = new Audio();
+let upAudio = new Audio();
+let downAudio = new Audio();
+let leftAudio = new Audio();
+let rightAudio = new Audio();
 
 //* --------------------------------------------------------------------------------------------------------
+eatFruit.src = "./audio/eat.mp3";
+upAudio.src = "./audio/up.mp3";
+downAudio.src = "./audio/down.mp3";
+leftAudio.src = "./audio/left.mp3";
+rightAudio.src = "./audio/right.mp3";
+
+let sound = document.getElementById("sound");
+
+function play() {
+  sound.volume = 0.02;
+  sound.play();
+}
+function upSound() {
+  upAudio.volume = 0.3;
+  upAudio.play();
+}
+function downSound() {
+  downAudio.volume = 0.3
+  downAudio.play();
+}
+function leftSound() {
+  leftAudio.volume = 0.3
+  leftAudio.play();
+}
+function rightSound() {
+  rightAudio.volume = 0.3
+  rightAudio.play();
+}
+function playEat() {
+  eatFruit.volume = 0.3;
+  eatFruit.play();
+}
+
+//* --------------------------------------------------------------------------------------------------------
+let lives = document.getElementById("heartImg");
+
+//* --------------------------------------------------------------------------------------------------------let canvas = document.getElementById("gameContainer");
 
 let canvas = document.getElementById("gameContainer");
 let ctx = canvas.getContext("2d");
@@ -120,7 +171,7 @@ class Ball {
     this.color = color;
     this.speed = speed;
     this.dx = 1 * this.speed;
-    this.dy = 1 * this.speed;
+    this.dy = -1 * this.speed;
   }
   draw() {
     ctx.beginPath();
@@ -137,24 +188,21 @@ class Ball {
     if (this.y - this.radius < 0 || this.y >= canvas.height - this.radius) {
       this.dy = -this.dy;
     }
-    //* collision detection
-
-    // if (this.x - this.radius < pX + sWidth && this.x + this.radius > pX) {
-    //   point -= 2;
-    // }
-    // if (this.y - this.radius < pY + sHeight && this.y + this.radius > pY) {
-    //   point -= 2;
-    // }
-
     this.x += this.dx;
     this.y += this.dy;
     this.draw(ctx);
   }
 }
 
-let ball1 = new Ball(190, 350, 70, "brown", 4);
+let ball1 = new Ball(190, 350, 70, "blue", 4);
+let ball2 = new Ball(400, 360, 70, "yellow", -2);
+let ball3 = new Ball(500, 500, 70, "yellow", 3);
 
 //* make player --------------------------------------------------------------------------------------------------------
+
+// let D = Math.sqrt(Math.pow(pX + sWidth, 2) + Math.pow(pY + sHeight, 2));
+
+// let player = new Ball(pX + sWidth / 2, pY + sHeight / 2, D / 2);
 
 function playerMove(diffX, diffY, direction) {
   if (pX + sWidth + diffX > canvas.width) {
@@ -189,6 +237,7 @@ function eatFood() {
       x: Math.floor(Math.random() * canvas.width),
       y: Math.floor(Math.random() * canvas.height),
     };
+    playEat();
     point += 2;
     score.textContent = `${point}`;
   }
@@ -203,6 +252,7 @@ function eatFood() {
       x: Math.floor(Math.random() * canvas.width),
       y: Math.floor(Math.random() * canvas.height),
     };
+    playEat();
     point += 1;
     score.textContent = `${point}`;
   }
@@ -216,6 +266,7 @@ function eatFood() {
       x: Math.floor(Math.random() * canvas.width),
       y: Math.floor(Math.random() * canvas.height),
     };
+    playEat();
     point += 1;
     score.textContent = `${point}`;
   }
@@ -229,15 +280,71 @@ function eatFood() {
       x: Math.floor(Math.random() * canvas.width),
       y: Math.floor(Math.random() * canvas.height),
     };
+    playEat();
     point += 3;
     score.textContent = `${point}`;
   }
 }
-// function loosePoint() {
-//   if (pX < ball1.x + ball1.radius && pX > ball1 && ) {
 
-//   }
-// }
+function loosingLives(ball) {
+  if (
+    pX < ball.x + ball.radius &&
+    pX + sWidth > ball.x &&
+    pY < ball.y + ball.radius &&
+    pY + sHeight > ball.y
+  ) {
+    ball.color = "black";
+  }
+}
+
+/* function isColliding() {
+  if (
+    pX < ball1.x + ball1.radius &&
+    pX + sWidth > ball1.x &&
+    pY < ball1.y + ball1.radius &&
+    pY + sHeight > ball1.y
+  ) {
+    ball1.color = "black";
+  } else {
+    ball1.color = "blue";
+  }
+
+  if (
+    pX < ball2.x + ball2.radius &&
+    pX + sWidth > ball2.x &&
+    pY < ball2.y + ball2.radius &&
+    pY + sHeight > ball2.y
+  ) {
+    point--;
+    ball2.color = "red";
+  } else {
+    ball2.color = "yellow";
+  }
+
+  if (
+    pX < ball3.x + ball3.radius &&
+    pX + sWidth > ball3.x &&
+    pY < ball3.y + ball3.radius &&
+    pY + sHeight > ball3.y
+  ) {
+    ball3.color = "red";
+    point--;
+  } else {
+    ball3.color = "yellow";
+  }
+} */
+
+function distance(x1, y1, x2, y2) {
+  var dx = x2 - x1;
+  var dy = y2 - y1;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function collides(circle1, circle2) {
+  var d = distance(circle1.x, circle1.y, circle2.x, circle2.y);
+  return d <= circle1.radius + circle2.radius;
+}
+
 //* --------------------------------------------------------------------------------------------------------
 
 function loadImage() {
@@ -272,17 +379,21 @@ function gameLoop() {
   let hasMoved = false;
 
   if (keyPresses.ArrowUp) {
+    upSound();
     playerMove(0, -speed, up);
     hasMoved = true;
   } else if (keyPresses.ArrowDown) {
+    downSound();
     playerMove(0, speed, down);
     hasMoved = true;
   }
 
   if (keyPresses.ArrowLeft) {
+    leftSound();
     playerMove(-speed, 0, left);
     hasMoved = true;
   } else if (keyPresses.ArrowRight) {
+    rightSound();
     playerMove(speed, 0, right);
     hasMoved = true;
   }
@@ -297,13 +408,30 @@ function gameLoop() {
       }
     }
   }
-  // checkingIntersect();
-  // isColliding();
+
+  // "#" + parseInt(Math.random() * 0xffffff).toString(16)
+
+  // if (collides(ball1, ball2)) {
+  //   ball1.color = "black";
+  // } else {
+  //   ball1.color = "blue";
+  // }
+
   drawFood();
   eatFood();
+  // play();
 
   drawFrame(loopCycle[currentLoopIndex], currentDirection, pX, pY);
+  loosingLives(ball1);
+  loosingLives(ball2);
+  loosingLives(ball3);
+  // collisionBallPlayer(ball1);
+  // isColliding();
   ball1.draw();
+  ball2.draw();
+  ball3.draw();
+  ball3.update();
+  ball2.update();
   ball1.update();
   window.requestAnimationFrame(gameLoop);
 }
