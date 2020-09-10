@@ -100,8 +100,9 @@ function playEat() {
 //* --------------------------------------------------------------------------------------------------------
 let lives = document.getElementById("lifePoint");
 let life = document.querySelectorAll(".heartImg");
+// let heart1 = document.getElementById("heart1");
 // console.log(lives);
-console.log(life)
+console.log(life);
 
 //* --------------------------------------------------------------------------------------------------------let canvas = document.getElementById("gameContainer");
 
@@ -295,8 +296,12 @@ function eatFood() {
     score.textContent = `${point}`;
   }
 }
+function removeHeart() {
+  // lives.lastChild.remove();
+  console.log("remove heart");
+}
 
-function loosingLives(ball) {
+function collideWithBall(ball) {
   if (
     pX < ball.x + ball.radius &&
     pX + sWidth > ball.x &&
@@ -304,46 +309,13 @@ function loosingLives(ball) {
     pY + sHeight > ball.y
   ) {
     deadSound();
+    removeHeart();
     ball.color = "#" + parseInt(Math.random() * 0xffffff).toString(16);
+    console.log(false);
+    return false;
   }
+  return true;
 }
-
-/* function isColliding() {
-  if (
-    pX < ball1.x + ball1.radius &&
-    pX + sWidth > ball1.x &&
-    pY < ball1.y + ball1.radius &&
-    pY + sHeight > ball1.y
-  ) {
-    ball1.color = "black";
-  } else {
-    ball1.color = "blue";
-  }
-
-  if (
-    pX < ball2.x + ball2.radius &&
-    pX + sWidth > ball2.x &&
-    pY < ball2.y + ball2.radius &&
-    pY + sHeight > ball2.y
-  ) {
-    point--;
-    ball2.color = "red";
-  } else {
-    ball2.color = "yellow";
-  }
-
-  if (
-    pX < ball3.x + ball3.radius &&
-    pX + sWidth > ball3.x &&
-    pY < ball3.y + ball3.radius &&
-    pY + sHeight > ball3.y
-  ) {
-    ball3.color = "red";
-    point--;
-  } else {
-    ball3.color = "yellow";
-  }
-} */
 
 function distance(x1, y1, x2, y2) {
   var dx = x2 - x1;
@@ -419,34 +391,42 @@ function gameLoop() {
       }
     }
   }
-
-  // "#" + parseInt(Math.random() * 0xffffff).toString(16)
-
-  // if (collides(ball1, ball2)) {
-  //   ball1.color = "black";
-  // } else {
-  //   ball1.color = "blue";
-  // }
-
   drawFood();
   eatFood();
   // play();
 
   drawFrame(loopCycle[currentLoopIndex], currentDirection, pX, pY);
-  loosingLives(ball1);
-  loosingLives(ball2);
-  loosingLives(ball3);
-  loosingLives(ball4);
-  // collisionBallPlayer(ball1);
-  // isColliding();
+
+  var noDelay = true;
+  noDelay = noDelay && collideWithBall(ball1);
+  noDelay = noDelay && collideWithBall(ball2);
+  noDelay = noDelay && collideWithBall(ball3);
+  noDelay = noDelay && collideWithBall(ball4);
+
+  // collideWithBall(ball1);
+  // collideWithBall(ball2);
+  // collideWithBall(ball3);
+  // collideWithBall(ball4);
+
   ball1.draw();
   ball2.draw();
   ball3.draw();
   ball4.draw();
+
   ball3.update();
   ball2.update();
   ball1.update();
   ball4.update();
-  window.requestAnimationFrame(gameLoop);
+
+  if (noDelay === false) {
+    window.setTimeout(() => {
+      requestAnimationFrame(gameLoop);
+    }, 10);
+  } else {
+    requestAnimationFrame(gameLoop);
+  }
+
+  // window.requestAnimationFrame(gameLoop);
 }
+
 gameLoop();

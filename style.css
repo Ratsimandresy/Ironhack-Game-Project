@@ -6,7 +6,6 @@
 body {
   background-image: url(./image/landscape.jpg);
   background-size: cover;
-  height: 100vh;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
