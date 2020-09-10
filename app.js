@@ -1,3 +1,5 @@
+// document.location.reload(false);
+
 let score = document.querySelector("#score p span");
 console.log(score);
 

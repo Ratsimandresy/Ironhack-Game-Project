@@ -28,10 +28,12 @@ body {
   align-items: center;
 }
 #lifePoint {
+  border: 5px dashed rgb(180, 56, 56);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 500px;
+  height: 100px;
 }
 .heartImg {
   display: block;
@@ -43,7 +45,7 @@ body {
   background-repeat: no-repeat;
   background-position-x: center;
   width: 1000px;
-  height: 580px;
+  height: 600px;
   border: 15px solid rgb(187, 114, 45);
 }
 
@@ -61,6 +63,7 @@ body {
   align-items: center;
 }
 #left-panel {
+  margin-left: -50px;
   font-family: fantasy;
   font-size: 40px;
   color: rgb(159, 51, 202);
@@ -92,10 +95,10 @@ body {
 }
 
 #score {
-  width: 300px;
+  width: 500px;
   height: 200px;
   color: rgb(202, 62, 74);
-  font-size: 70px;
+  font-size: 100px;
   font-style: bold;
   font-family: fantasy;
   display: flex;
@@ -104,7 +107,8 @@ body {
 }
 
 #start {
-  margin: 0 10px;
+  margin: 20px;
+  padding: 0 10px;
   border-radius: 20px;
   width: 200px;
   height: 100px;
@@ -155,9 +159,4 @@ body {
   100% {
     background-size: cover;
   }
-}
-#main {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }

@@ -56,6 +56,9 @@
             style="width: 100px"
           />
         </div>
+        <div id="left-panel">
+          <a href="./tutorial.html">TUTORIAL</a>
+        </div>
         <div id="score">
           <p>score : <span>0</span></p>
         </div>
@@ -63,18 +66,10 @@
       <div class="countDown">00:00:00</div>
     </header>
     <div id="start">
-      <button id="btn" onclick="start();gameLoop()" onclick="gameLoop()">
-        S T A R T
-      </button>
+      <button id="btn" onclick="start();gameLoop()">S T A R T</button>
     </div>
     <main id="main">
-      <aside id="left-panel">
-          <a href="./tutorial.html">TUTORIAL</a>
-      </aside>
-
       <canvas id="gameContainer"></canvas>
-
-  
     </main>
     <audio id="sound" src="./game-sound.mp3"></audio>
   </body>
