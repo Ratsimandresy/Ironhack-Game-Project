@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
 * {
   margin: 0;
   padding: 0;
@@ -43,6 +45,10 @@ body {
 }
 
 #gameContainer {
+  border-bottom: 16px inset rgba(150, 105, 7, 0.8);
+  border-left: 16px inset rgba(196, 151, 54, 0.8);
+  border-right: 16px inset rgba(148, 104, 9, 0.8);
+  border-top: 16px inset rgba(196, 151, 54, 0.8);
   border-radius: 5px;
   background-image: url(./image/grass_14.png);
   background-size: cover;
@@ -50,12 +56,11 @@ body {
   background-position-x: center;
   width: 1000px;
   height: 600px;
-  border: 15px solid rgb(187, 114, 45);
 }
 
 .countDown {
   width: 300px;
-  font-family: fantasy;
+  font-family: "VT323", monospace;
   padding: 0 20px;
   color: rgb(92, 145, 194);
   font-size: 90px;
@@ -78,6 +83,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 6px inset rgba(255, 255, 255, 0.089);
+  border-left: 6px inset rgba(255, 255, 255, 0.5);
+  border-right: 6px inset rgba(255, 255, 255, 0.5);
+  border-top: 6px inset rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
 }
 
 #cloudrainbow {
@@ -87,11 +97,17 @@ body {
 }
 
 #right {
+  font-family: "VT323", monospace;
   width: 300px;
   height: 500px;
   background-color: aquamarine;
   opacity: 0.7;
   border-radius: 30px;
+  border-bottom: 6px inset rgba(255, 255, 255, 0.089);
+  border-left: 6px inset rgba(255, 255, 255, 0.5);
+  border-right: 6px inset rgba(255, 255, 255, 0.5);
+  border-top: 6px inset rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
 }
 
 #fraise {
@@ -189,59 +205,26 @@ body {
   align-items: center;
 }
 
-#start {
-  margin: 20px;
-  padding: 0 10px;
-  border-radius: 20px;
-  width: 200px;
-  height: 100px;
-  background-color: aquamarine;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: color 4s linear 0.5s infinite;
-}
-
-@keyframes color {
-  0% {
-    background-color: yellow;
-  }
-  50% {
-    background-color: rgb(75, 235, 195);
-  }
-  100% {
-    background-color: rgb(241, 164, 100);
-  }
-}
-
 #btn {
-  border: none;
-  width: 150px;
-  height: 60px;
-  border-radius: 20px;
-  font-size: 30px;
-  color: chartreuse;
-  animation: puff-in-center 2s cubic-bezier(0.47, 0, 0.745, 0.715) infinite both;
-}
+  font-family: "VT323", monospace;
+  background: #079933;
+  border-bottom: 6px inset rgba(0, 0, 0, 0.5);
+  border-left: 6px inset rgba(0, 0, 0, 0.5);
+  border-right: 6px inset rgba(255, 255, 255, 0.5);
+  border-top: 6px inset rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2.2rem;
+  margin: 1rem;
+  min-width: 200px;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  width: auto;
 
-@keyframes puff-in-center {
-  0% {
-    transform: scale(2);
-    filter: blur(4px);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    filter: blur(0);
-    opacity: 1;
-  }
-}
-@keyframes start {
-  0% {
-    background-size: 50%;
-  }
-  100% {
-    background-size: cover;
+  &:focus,
+  &:hover {
+    background: #bcbcbc;
   }
 }

@@ -245,6 +245,15 @@ function playerMove(diffX, diffY, direction) {
 
 //* displaying score
 
+let live = document.querySelector("#lifePoint #heart1");
+// console.log(live);
+
+function extraLives() {
+  lives.appendChild(live);
+}
+
+// let extraLive = setInterval(extraLives, 3000);
+
 function eatFood() {
   if (
     pX < cerise.x + 120 &&

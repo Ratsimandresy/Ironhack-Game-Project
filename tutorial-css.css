@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +18,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 60px;
   color: rgb(201, 44, 75);
   animation: shake-horizontal 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
     infinite both;
@@ -47,7 +49,8 @@ header {
 }
 
 main {
-    font-style: bold;
+  font-family: "VT323", monospace;
+  font-style: bold;
   margin: -90px 20px 0 0;
   color: rgb(31, 16, 167);
   font-size: 30px;
@@ -57,16 +60,15 @@ main {
 }
 
 main ul li {
-    list-style: none;
+  list-style: none;
 }
 
 main ul li span {
-    color: rgb(240, 13, 13);
+  color: rgb(240, 13, 13);
 }
 
-
 p {
-  margin: 9px 0px;
+  margin: 15px 0px;
   animation: shadow-drop-2-center 3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     infinite both;
 }
