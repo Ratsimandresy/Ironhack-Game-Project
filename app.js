@@ -336,7 +336,7 @@ function collideWithBall(ball) {
     setTimeout(() => {
       point -= Math.floor(Math.random() * (7 - 1 + 1)) + 1;
       isPlayerIntangible = false;
-    }, 300);
+    }, 250);
     deadSound();
     removeHeart();
     changeColor(ball);
