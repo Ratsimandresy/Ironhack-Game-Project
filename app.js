@@ -1,9 +1,13 @@
 // document.location.reload(false);
 
 let score = document.querySelector("#score p span");
+let hitBall = document.querySelector("#score #hit span");
+let mainDivScore = document.getElementById("score");
+let hitBox = mainDivScore.getElementsByTagName("div")[0];
 console.log(score);
 
 let point = 0;
+let hit = 0;
 
 let ms = 0;
 let s = 0;
@@ -82,7 +86,7 @@ function upSound() {
   upAudio.play();
 }
 function downSound() {
-  downAudio.volume = 0.3;
+  downAudio.volume = 0.4;
   downAudio.play();
 }
 function leftSound() {
@@ -218,7 +222,7 @@ class Ball {
 }
 
 let ball1 = new Ball(190, 350, 70, "blue", 4);
-let ball2 = new Ball(400, 360, 70, "red", -2);
+let ball2 = new Ball(400, 360, 70, "red", 2);
 let ball3 = new Ball(500, 500, 70, "yellow", 3);
 let ball4 = new Ball(700, 100, 70, "green", -1.5);
 let ball5 = new Ball(700, 250, 70, "white", -5);
@@ -349,6 +353,18 @@ function getLive() {
   }
 }
 
+function hitEffect() {
+  hitBox.classList.add("hit");
+}
+function removeHitEffect() {
+  hitBox.classList.remove("hit");
+}
+
+function hitByBall() {
+  hit++;
+  hitBall.textContent = `${hit}`;
+}
+
 function removeHeart() {
   lives.lastChild.remove();
   console.log("remove heart");
@@ -374,12 +390,16 @@ function collideWithBall(ball) {
       isPlayerIntangible = false;
     }, 250);
     deadSound();
+    hitByBall();
     removeHeart();
     changeColor(ball);
+    hitEffect();
 
     return false;
+  } else {
+    removeHitEffect();
+    return true;
   }
-  return true;
 }
 
 function distance(x1, y1, x2, y2) {

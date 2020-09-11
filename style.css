@@ -43,6 +43,42 @@ body {
   display: block;
   border-radius: 50%;
 }
+#score {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#score #hit {
+  font-size: 90px;
+}
+.hit {
+  animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-14px);
+  }
+  20%,
+  40%,
+  60% {
+    transform: translateX(14px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}
 
 #gameContainer {
   border-bottom: 16px inset rgba(150, 105, 7, 0.8);
@@ -196,7 +232,7 @@ body {
 #score {
   width: 500px;
   height: 200px;
-  color: rgb(202, 62, 74);
+  color: rgb(214, 73, 85);
   font-size: 100px;
   font-style: bold;
   font-family: fantasy;
