@@ -16,12 +16,13 @@ let timer;
 let isPlayerIntangible = false;
 let stopwatch = document.querySelector(".countDown");
 let button = document.getElementById("btn");
+let btnContent = button.textContent;
 
 let start = () => {
-  if (!timer) {
+  if (!timer && btnContent) {
     timer = setInterval(run, 10);
+    button.textContent = "GO";
   }
-  button.textContent = "GO";
 };
 
 function run() {
@@ -86,7 +87,7 @@ function upSound() {
   upAudio.play();
 }
 function downSound() {
-  downAudio.volume = 0.4;
+  downAudio.volume = 0.5;
   downAudio.play();
 }
 function leftSound() {
