@@ -73,7 +73,7 @@ deadAudio.src = "./audio/dead.mp3";
 
 let sound = document.getElementById("sound");
 
-function play() {
+function playBackground() {
   sound.volume = 0.08;
   sound.play();
 }
@@ -103,8 +103,6 @@ function playEat() {
 }
 
 //* --------------------------------------------------------------------------------------------------------
-let lives = document.getElementById("lifePoint");
-let life = document.querySelectorAll(".heartImg");
 
 let strawberry = document.querySelector("#fraise div span");
 let cherry = document.querySelector("#cerise div span");
@@ -132,6 +130,7 @@ function drawFood() {
   ctx.drawImage(orangeImg, orange.x, orange.y);
   ctx.drawImage(berryImg, berry.x, berry.y);
   ctx.drawImage(fraiseImg, fraise.x, fraise.y);
+  ctx.drawImage(heartImg, live.x, live.y);
 }
 
 window.addEventListener("keydown", keyDownListener);
@@ -174,6 +173,13 @@ let berry = {
 const fraiseImg = new Image();
 fraiseImg.src = "./fraise.gif";
 let fraise = {
+  x: Math.floor(Math.random() * canvas.width),
+  y: Math.floor(Math.random() * canvas.height),
+};
+
+const heartImg = new Image();
+heartImg.src = "./image/live.gif";
+let live = {
   x: Math.floor(Math.random() * canvas.width),
   y: Math.floor(Math.random() * canvas.height),
 };
@@ -245,13 +251,6 @@ function playerMove(diffX, diffY, direction) {
 
 //* displaying score
 
-let live = document.querySelector("#lifePoint #heart1");
-// console.log(live);
-
-function extraLives() {
-  lives.appendChild(live);
-}
-
 // let extraLive = setInterval(extraLives, 3000);
 
 function eatFood() {
@@ -319,6 +318,34 @@ function eatFood() {
     strawberry.textContent = `${num1}`;
     point += 3;
     score.textContent = `${point}`;
+  }
+}
+
+let lives = document.getElementById("lifePoint");
+let life = document.querySelectorAll(".heartImg");
+let heart4 = document.querySelector("#lifePoint #heart4");
+let newHeart = heart4.cloneNode(true);
+// console.log(lastHeart);
+
+function extraLives() {
+  lives.append(newHeart);
+}
+
+console.log(extraLives);
+
+function getLive() {
+  if (
+    pX < live.x + 90 &&
+    pX + sWidth > live.x &&
+    pY < live.y + 90 &&
+    pY + sHeight > live.y
+  ) {
+    live = {
+      x: Math.floor(Math.random() * canvas.width),
+      y: Math.floor(Math.random() * canvas.height),
+    };
+    rightSound();
+    extraLives();
   }
 }
 
@@ -431,7 +458,8 @@ function gameLoop() {
   }
   drawFood();
   eatFood();
-  // play();
+  getLive();
+  playBackground();
 
   drawFrame(loopCycle[currentLoopIndex], currentDirection, pX, pY);
 
